@@ -1,0 +1,91 @@
+{$editor = '.editor'}
+{include file='tinymce_init.html'}
+
+{literal}
+<script type='text/javascript'>
+function generate_url()
+{
+	url = $('input[name="name"]').val();
+	url = url.replace(/[\s]+/gi, '_');
+	url = translit(url);
+	url = url.replace(/[^0-9a-z_]+/gi, '').toLowerCase();	
+	return url;
+}
+
+function translit(str)
+{
+	var ru=("А-а-Б-б-В-в-Ґ-ґ-Г-г-Д-д-Е-е-Ё-ё-Є-є-Ж-ж-З-з-И-и-І-і-Ї-ї-Й-й-К-к-Л-л-М-м-Н-н-О-о-П-п-Р-р-С-с-Т-т-У-у-Ф-ф-Х-х-Ц-ц-Ч-ч-Ш-ш-Щ-щ-Ъ-ъ-Ы-ы-Ь-ь-Э-э-Ю-ю-Я-я").split("-")   
+	var en=("A-a-B-b-V-v-G-g-G-g-D-d-E-e-E-e-E-e-ZH-zh-Z-z-I-i-I-i-I-i-J-j-K-k-L-l-M-m-N-n-O-o-P-p-R-r-S-s-T-t-U-u-F-f-H-h-TS-ts-CH-ch-SH-sh-SCH-sch-'-'-Y-y-'-'-E-e-YU-yu-YA-ya").split("-")   
+ 	var res = '';
+	for(var i=0, l=str.length; i<l; i++)
+	{ 
+		var s = str.charAt(i), n = ru.indexOf(s); 
+		if(n >= 0) { res += en[n]; } 
+		else { res += s; } 
+    } 
+    return res;  
+}
+
+jQuery(document).ready(function(){
+
+	jQuery("#aName").keyup(function(){
+		console.log("try");
+		var url = jQuery(this).val();
+		url = url.replace(/[\s]+/gi, '_');
+		url = translit(url);
+		url = url.replace(/[^0-9a-z_]+/gi, '').toLowerCase();	
+				console.log(url);
+		jQuery("#aURL").val(url);
+	});
+	
+});
+</script>
+{/literal}
+
+<h1 id='caption'> </h1>
+
+<div style='margin-left:40px;'>
+<form id='mainForm' method='post' action='/admin/?module=Article&edit={$art}'>
+<input type='hidden' name='action' value='edit' />
+
+<input type='hidden' name='type' value='{$type}' />
+
+<div class='iParam'>
+	<div class='name'>Название</div>
+	<div class='value'><input type='text' id='aName' name='title' value='{$article->title}' /></div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>URL</div>
+	<div class='value'><input type='text' id='aURL' name='url' value='{$article->url}' /></div>
+</div>
+
+{if $type}
+<div class='iParam'>
+	<div class='name'>Каталог</div>
+	<div class='value'>
+
+		<select name='parentId'>
+			<option value='1'>Корень</option>
+
+			{foreach $cats as $c}
+
+				<option value='{$c->mId}' 				{if $c->mId==$article->parentId}selected{/if}>{$c->title}</option>
+			{/foreach}
+		</select>
+	</div>
+</div>
+
+{/if}
+
+<div class='iParam'>
+<textarea name='body' style='width:600px;height:200px' class='editor'>{$article->body}</textarea/>
+</div>
+
+	<a href="javascript:;" onclick="$('.editor').tinymce().show();return false;">[Show]</a>
+	<a href="javascript:;" onclick="$('.editor').tinymce().hide();return false;">[Hide]</a>
+
+<input type='submit' value="OK" class='button' style='width:200px' />
+
+</form>
+</div>

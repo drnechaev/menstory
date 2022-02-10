@@ -1,0 +1,32 @@
+
+<table class='adm_table multi' id='type_table'>
+	<tr class='fisrt'>
+		<th class='first'></th>
+		<th>Группа товара</th>
+		<th>Цена</th>
+		<th class='last'> </th>
+	</tr>
+
+{$class='one'}
+{foreach $groups as $g}
+
+
+	<tr id='st_{$g->id}' class='{$class}' >
+			<td></td>
+			<td><a href='/admin/?module=product&type=1&edit={$g->id}'>{$g->typeName}</a></td>
+			<td><a href='/admin/?module=product&type=1&edit={$g->id}'>{$g->price}</a></td>
+			<td>
+				<a href='/admin/?module=product&&type=1&delete={$g->id}' onclick='return deleteItem(this)'><img src='/admin/template/img/delete.png'></a>
+			</td>
+	</tr>
+	
+	{if $class=='one'}
+		{$class='two'}
+	{else}
+		{$class='one'}
+	{/if}
+
+{/foreach}
+
+
+</table>

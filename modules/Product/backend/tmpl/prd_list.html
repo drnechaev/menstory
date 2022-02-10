@@ -1,0 +1,26 @@
+
+
+<h1>{$catalogName}</h1>
+<table class='adm_table' >
+	<tr class='fisrt'>
+		<th class='first'>Навзание</th>
+		<th>Тип</th>
+		<th class='last'></th>
+	</tr>
+		
+	{foreach $prd as $p}
+		<tr id='st_{$p->id}' class='{if $p@iteration is even by 2}one{else}two{/if}'>
+			<td><a href='/admin/?module=product&prd=1&edit={$p->id}'>{$p->name}</a></td>
+			<td>{$p->typeName}</td>
+
+			<td>
+				<a href='/admin/?module=product&prdstatus={$p->id}' class='status'><img class='img_turn' src='/admin/template/img/turn{if $p->status}on{else}off{/if}.png'></a>
+				<a href='/admin/?module=product&prd=1&edit={$p->id}'><img src='/admin/template/img/edit.png'></a>
+				<a href='/admin/?module=product&prd=1&delete={$p->id}' onclick='return deleteItem(this)'><img src='/admin/template/img/delete.png'></a>
+
+			
+			</td>
+		</tr>
+	{/foreach}
+	
+</table>

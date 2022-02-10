@@ -1,0 +1,8 @@
+<form method='post' action='/admin/?module=user&type&edit={$smarty.get.edit}' id='nwMainForm'>
+<input type='hidden' name='usTypeAction' value='1' />
+{if $t->id}
+	<input type='hidden' name='id' value='{$t->id}' />
+{/if}
+<input type='text' value='{$t->typeName}' name='typeName' />
+<input type='submit' value='OK' />
+</form>

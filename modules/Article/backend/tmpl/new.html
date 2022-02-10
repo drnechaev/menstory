@@ -1,0 +1,41 @@
+
+<div>
+
+<form action='/admin/?module=Article&new' method='post'>
+
+{if isset($newart)}
+<h1>Новая {if $newart==0}подкатегория{else}Статья{/if}</h1>
+<input type='hidden' name='action' value='new'>
+<input type='hidden' name='new' value='{$newart}'>
+{else}
+<h1>Редактирование</h1>
+<input type='hidden' name='action' value='edit'>
+<input type='hidden' name='new' value='{$mat['mId']}'>
+
+{/if}
+
+Название: <input type='text' name='name' value='{$mat['name']}' /><br/>
+URL: <input type='text' name='url' value='{$mat['url']}' /><br/>
+
+Родитель:
+<select name='parentId'>
+	<option value='1'>Корень</option>
+	{foreach $parents as $p}
+	<option value='{$p['mId']}' {if $p['mId']==$mat['parentId']}selected{/if}>{$p['name']}</option>
+	{/foreach}
+	</select><br/>
+
+Title: <input type='text' name='metaTitle' value='{$mat['metaTitle']}' /><br/>
+Description: <input type='text' name='metaDescription' value='{$mat['metaDescription']}' /><br/>
+Keywords: <input type='text' name='metaKeywords' value='{$mat['metaKeywords']}' /><br/>
+
+<textarea name='description' style='width:100%;height:200px;'>{$mat['description']}</textarea><br/>
+
+<input type='submit' value='OK'>
+</form>
+
+
+
+
+
+</div>

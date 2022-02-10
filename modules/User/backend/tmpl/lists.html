@@ -1,0 +1,56 @@
+
+{*<table class='adm_table single' id='user_table'>*}
+
+<script type='text/javascript' src='/admin/js/nw_admin.js'> </script>
+<script type='text/javascript'>
+jQuery(document).ready(function() { 
+
+table = adminTable( { 'isMulti':true,
+		callbackClick:function(id){
+			$("#r_data").html("<p style='text-align:center'><img src='/admin/img/loading.gif' alt='' /></p>");
+	
+			$.getJSON("/admin/?module=user&no_html=1&info="+id,function(data){
+				$("#r_data").html(data);
+			});
+		}
+	 } );
+
+ } );
+</script>
+
+<table class='adm_table' >
+	<tr class='fisrt'>
+		<th class='first'>	</th>
+		<th>Пользователь</th>
+		<th>Группа</th>
+		<th class='last'> </th>
+	</tr>
+
+{$class='one'}
+{foreach $USER as $u}
+
+
+	<tr id='st_{$u['mId']}' class='{$class}' >
+			<td></td>
+			<td><a href='/admin/?module=User&edit={$u['mId']}'>{$u['name']}</a></td>
+			<td>
+				{foreach $group as $g}
+					{if $g['id'] & $u['type']}
+						{$g['typeName']} 
+					{/if}
+				{/foreach}
+			</td>
+			<td><a href='/admin/?module=user&delete={$u['mId']}' class='delete'>del</a></td>
+	</tr>
+	
+	
+	{if $class=='one'}
+		{$class='two'}
+	{else}
+		{$class='one'}
+	{/if}
+
+{/foreach}
+
+
+</table>

@@ -1,0 +1,32 @@
+<form method='post' action='/admin/?module=user&edit={$smarty.get.edit}' id='nwMainForm'>
+<input type='hidden' name='usAction' value='1' />
+{if $user['mId']}
+	<input type='hidden' name='mId' value='{$user['mId']}' />
+{/if}
+Имя: <input type='text' name='name' value='{$user['name']}' /><br/>
+{*FIXME
+	СТатусы может сделать редактируемые?
+	*}
+Статус: <select name='status'>
+{if $user['status']==0}
+	<option value='0' {if $user['status']==0}selected{/if}>Новый</option>
+{/if}
+	<option value='1' {if $user['status']==1}selected{/if}>Активный</option>
+	<option value='2' {if $user['status']==2}selected{/if}>Блокирован</option>
+</select><br/>
+E-mail: <input type='text' name='email' value='{$user['email']}' /><br/>
+{if $user['mId']!=0 || !$login_as_email}
+login: <input type='text' {if $user['mId']!=0}disabled{/if} name='login' value='{$user['login']}' /><br/>
+{/if}
+password: <input type='text' name='password' value='' /> <a href='#' id='pass_gen'>Генерировать</a><br/>
+Группа: <select name='type[]' multiple style='width:200px;height:100px'>
+	{foreach $groups as $g}
+	<option value='{$g['id']}'  {if $user['type']&$g['id']}selected{/if}>{$g['typeName']}</option>
+	{/foreach}
+</select><br/>
+{if !$user['mId']}
+Оповестить пользователя о создание аккаунта <input type='checkbox' name='send_msg' /><br/>
+{/if}
+
+<input type='submit' value='OK' />
+</form>

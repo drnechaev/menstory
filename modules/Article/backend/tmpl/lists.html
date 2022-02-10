@@ -1,0 +1,35 @@
+
+
+<script type='text/javascript' src='/admin/js/nw_admin.js'> </script>
+<script type='text/javascript'>
+jQuery(document).ready(function() { 
+
+table = adminTable();
+
+ } );
+</script>
+
+
+<table class='adm_table'>
+	<tr class='fisrt'>
+		<th class='first'></th>
+		<th>Навзание</th>
+		<th>Тип</th>
+		<th class='last'> </th>
+	</tr>
+
+{$class='one'}
+{foreach $ARTICLES as $m}
+
+
+	<tr id='st_{$m['mId']}' class='{$class}' >
+			<td></td>
+			<td><a href='/admin/?module=Article&{if $m['type']==1}edit={$m['mId']}{else}mId={$m['mId']}{/if}'>{$m['name']}</a></td>
+			<td>{if $m['type']==0}Каталог{else}Статья{/if}</td>
+			<td><a href='/admin/?module=Article&edit={$m['mId']}'><img src='/admin/img/icons/edit.png' alt='edit' /></a> <a class='delete' href='/admin/?module=Article&delete={$m['mId']}'><img src='/admin/img/icons/delete.png' alt='edit' /></a></td>
+	</tr>
+
+{/foreach}
+
+
+</table>

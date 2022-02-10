@@ -1,0 +1,150 @@
+
+
+
+<h1 id='caption'> </h1>
+
+<div style='margin-left:40px;'>
+<form id='nwMainForm' method='post' action='/admin/?module=product&prd=1&edit={$prd}' enctype="multipart/form-data">
+<input type='hidden' name='prdAction' value='procces' />
+
+
+<table style='width:100%;vertical-align:top;'>
+<tr>
+<td style='width:60%;vertical-align:top;'>
+{$TEMPLATE_BEFORE}
+</td>
+<td style='vertical-align:top;'>
+
+
+<div class='iParam'>
+	<div class='name'>Цена</div>
+	<div class='value'><input type='text' name='p_price' value='{$p['price']}'/></div>
+</div>
+
+<div class='iParam'>	
+	<div class='name'>Тип</div>
+	<div class='value'> <select name='type'>
+		<option value='0' >Нет</option>
+		{foreach $types as $t}
+			<option value='{$t['id']}' {if $t['id']==$p['type']}selected{/if}>{$t['typeName']}</option>
+		{/foreach}
+		</select>
+	</div>
+</div>
+
+
+<div style='border:1px solid #333;' id='vars'>
+Варианты:
+{foreach $p['variants'] as $v}
+
+<div class='iParam'>
+	<input type='hidden' name='var[id][{$v['id']}]' value='{$v['id']}' />
+	<div class='name'>Название</div>
+	<div class='value'><input type='text' id='name' name='var[name][{$v['id']}]' value='{$v['name']}' /></div>
+
+	<div class='name'>Артикул</div>
+	<div class='value'><input type='text' id='name' name='var[sku][{$v['id']}]' value='{$v['sku']}' /></div>
+	
+	<div class='name'>Остаток</div>
+	<div class='value'><input type='text' name='var[stock][{$v['id']}]' value='{$v['stock']}'/></div>
+
+	<div style='text-align:center'><a class='delVar' href='/admin/?module=product&prd=1&edit={$prd}&delVar={$v['id']}'><img width='24px' src='/admin/img/icons/delete.png' /></a></div>
+	<hr/>
+</div>
+
+
+{/foreach}
+
+<div class='button' id='varAdd' style='width:200px'>Добавить</div>
+
+</div>
+
+
+</td>
+</tr>
+</table>
+{*
+
+<div class='iParam'>
+	<div class='name'>Название</div>
+	<div class='value'><input type='text' id='name' name='name' value='{$p['name']}' /></div>
+	
+	<div class='name'>Статус</div>
+	<div class='value'><input type='radio' name='status' value='0' {if $p['status']==0}checked{/if} /> Отключено<br/>
+			<input type='radio' name='status' value='1' {if $p['status']==1}checked{/if} /> Включено<br/></div>
+</div>
+
+<div class='iParam'>
+	
+</div>
+
+
+<div class='iParam'>
+	<div class='name'>Каталог</div>
+	<div class='value'> <select name='catid'>
+		{foreach $cats as $c}
+			<option value='{$c['mId']}' {if $c['mId']==$p['parentId']}selected{/if}>{$c['name']}</option>
+		{/foreach}
+		</select>
+	</div>
+	
+	<div class='name'>Тип</div>
+	<div class='value'> <select name='type'>
+		{foreach $types as $t}
+			<option value='{$t['id']}' {if $t['id']==$p['type']}selected{/if}>{$t['typeName']}</option>
+		{/foreach}
+		</select>
+	</div>
+</div>
+
+
+<div class='iParam'>
+	<div class='name'>Цена</div>
+	<div class='value'><input type='text' name='p_price' value='{$p['price']}'/></div>
+</div>
+
+<div class='vars' style='border:1px solid #000;'>
+
+{foreach $p['variants'] as $v}
+
+<div class='iParam'>
+	<input type='hidden' name='var[id][]' value='{$v['id']}' />
+	<div class='name'>Название</div>
+	<div class='value'><input type='text' id='name' name='var[name][]' value='{$v['name']}' /></div>
+
+	<div class='name'>Артикул</div>
+	<div class='value'><input type='text' id='name' name='var[sku][]' value='{$v['sku']}' /></div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Остаток</div>
+	<div class='value'><input type='text' name='var[stock][]' value='{$v['stock']}'/></div>
+</div>
+
+{/foreach}
+
+</div>
+
+
+
+<div class='iParam'>
+	{if $p['image']!=''}
+		<img src='/images/products/thumb/{$p['image']}' height='100px' style='float:left' />
+	{/if}
+	<div class='name'>Изображение</div>
+	<div class='value'><input type='file' id='img' name='img'' /></div><br/>
+	<div class='name'> Удалить изображение</div>
+	<div class='value'><input type='checkbox' name='del_img'' /></div>
+
+	<div style='clear:both'> </div>
+</div>
+
+<div class='iParam'>
+<textarea name='description' style='width:600px;height:200px' class='editor'>{$p['description']}</textarea/>
+</div>
+
+*}
+<input type='submit' value="OK" class='button' style='width:200px' />
+
+</form>
+</div>

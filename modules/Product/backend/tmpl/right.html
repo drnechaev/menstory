@@ -1,0 +1,37 @@
+
+{if isset($smarty.get.edit)}		
+<div id='r_top'>
+			<div class='button'><a href='/admin/?module=product{if $returnCat!=0}&cat={$returnCat}{/if}{if isset($smarty.get.cat)}&cat={$smarty.get.cat}{/if}{if isset($smarty.get.type)}&type={$smarty.get.type}{/if}'>Назад</a></div>
+			<div class='button' id='nw_submit'>Сохранить</div>
+</div>
+{else}
+	
+	
+			<div id='r_top'>
+			
+			<div class="tab_menu">
+				<div {if !isset($smarty.get.type)}class='active'{/if}><a href='/admin/?module=product'>Товары</a></div>
+				<div {if isset($smarty.get.type)}class='active'{/if}><a href='/admin/?module=product&type=1'>Типы товаров</a></div>
+
+			</div>
+
+				{if isset($smarty.get.type)}
+					<div class='button'><a href='/admin/?module=product&type=1&edit=0'>Новый тип</a></div>
+				{else}
+				
+					{if isset($smarty.get.cat) && $smarty.get.cat!=1}
+					<div class='button'><a href='/admin/?module=product'>Назад</a></div>
+					<div class='button'><a href='/admin/?module=product&prd=1&cat={$smarty.get.cat}'>Новый товар</a></div>
+					{*<div class='button'><a href='/admin/?module=product&addprds=1&cat={$smarty.get.cat}'>Импорт товаров</a></div>*}
+					<div class='button'><a href='/admin/?module=product&edit={$smarty.get.cat}'>Редактировать каталог</a></div>				
+					{else}
+
+					<div class='button'><a href='/admin/?module=product&edit=0&prd=1'>Новый товар</a></div>
+					{*<div class='button'><a href='/admin/?module=product&addprds=1'>Импорт товаров</a></div>*}
+					<div class='button'><a href='/admin/?module=product&edit=0'>Новый каталог</a></div>
+					{/if}
+				{/if}
+
+	
+			</div>
+{/if}

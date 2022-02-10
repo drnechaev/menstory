@@ -1,0 +1,50 @@
+{if !$no_html}
+<div id='r_top'>
+
+
+			<div class="tab_menu">
+				<div {if !isset($smarty.get.type)}class='active'{/if}><a href='/admin/?module=user'>Пользователи</a></div>
+				<div {if isset($smarty.get.type)}class='active'{/if}><a href='/admin/?module=user&type=1'>Группы</a></div>
+			</div>
+
+			{if isset($smarty.get.type)}
+			<div class='button' id='nw_submit'>Сохранить</div>
+			{*<input type='submit' id='submitMF' class='button' value='Сохранить' />*}
+
+			{else}
+			<div class='button'><a href='/admin/?module=user&edit=0'>Новый пользователь</a></div>
+			<hr/>
+
+			{/if}
+</div>
+<div id='r_data'>
+{/if}
+
+
+{if $user}
+<h4>Пользователь</h4>
+
+<div class='button' ><a class='del_user' onclick='return deleteUser({$user['mId']})' href='/admin/?module=user&delete={$user['mId']}'>Удалить пользователя</a></div>
+			
+<div class='button' ><a href='/admin/?module=user&edit={$user['mId']}'>Редактировать</a></div>
+{*<div class='button' ><a href='/admin/?module=mail&to=".{$user['mId']}."'>Отправить сообщение</a></div>*}
+<b>Имя пользователя:</b><br/>{$user['name']}<br/>
+{*<b>Группа:</b><br/>{$user['typeName']}<br/>*}
+<b>E-mail:</b><br/><a href="mailto:{$user['email']}" >{$user['email']}</a><br/>
+
+{*
+<b>Заказы:</b><br/><div class="ords">
+			
+<a href='/admin/?module=order&id=".$ord->id."'>Заказ №".$ord->id."</a><br/>;
+</div>
+
+{if $nums>4}
+	$text .="<div style='text-align:right;'><a class='ord_all' onclick='return ord_all()' href='#'>Показать все</a></div><br/>";
+{/if}
+
+*}
+{/if}
+
+{if !$no_html}
+</div>
+{/if}

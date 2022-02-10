@@ -1,0 +1,34 @@
+
+<script type='text/javascript' src='/admin/js/nw_admin.js'> </script>
+<script type='text/javascript'>
+jQuery(document).ready(function() { 
+
+table = adminTable();
+
+ } );
+</script>
+
+<h1>{$catalogName}</h1>
+<table class='adm_table' >
+	<tr class='fisrt'>
+		<th class='first'>Навзание</th>
+		<th>Тип</th>
+		<th class='last'></th>
+	</tr>
+		
+	{foreach $cats as $c}
+		<tr id='st_{$c['mId']}' class='{if $c@iteration is even by 2}one{else}two{/if}'>
+			<td><a href='/admin/?module=product&{if $c['type']==4096}cat={$c['mId']}{else}edit={$c['mId']}&prd=1{/if}'>{$c['name']}</a></td>
+			<td>{if $c['type']==4096}Каталог{else}Продукт{/if}</td>
+
+			<td>
+				<a href='/admin/?module=product&catstatus={$c['mId']}' class='turn'><img class='img_turn' src='/admin/template/img/turn{if $c['status']}on{else}off{/if}.png'></a>
+				<a href='/admin/?module=product&edit={$c['mId']}{if $c['type']<4096}&prd=1{/if}'><img src='/admin/template/img/edit.png'></a>
+				<a href='/admin/?module=product&delete={$c['mId']}' onclick='return deleteItem(this)'><img src='/admin/template/img/delete.png'></a>
+
+			
+			</td>
+		</tr>
+	{/foreach}
+	
+</table>

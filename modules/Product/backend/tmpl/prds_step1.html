@@ -1,0 +1,100 @@
+
+<h1 id='caption'>Импорт товаров</h1>
+
+<div style='margin-left:40px;'>
+<form id='mainForm' method='post' action='/admin/?module=product&addprds=1' enctype="multipart/form-data">
+<input type='hidden' name='step' value='1' />
+
+
+<div class='iParam'>
+	<div class='name'>Файл для импорта (формат xlsl)</div>
+	<div class='value'><input type='file' name='xls' /></div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Строка начала перечня</div>
+	<div class='value'><input type='text' name='begin'  value='1'/></div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Столбец имени</div>
+	<div class='value'>
+		<select name='nameRow'>
+					{$opt}
+		</select>
+	</div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Столбец артикула</div>
+	<div class='value'>
+		<select name='colorRow'>
+					{$opt}
+		</select>
+	</div>
+</div>
+
+
+<div class='iParam'>
+	<div class='name'>Столбец цвета</div>
+	<div class='value'>
+		<select name='colorRow'>
+					{$opt}
+		</select>
+	</div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Столбец материала</div>
+	<div class='value'>
+		<select name='matRow'>
+					{$opt}
+		</select>
+	</div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Столбец цены</div>
+	<div class='value'>
+		<select name='priceRow'>
+					{$opt}
+		</select>
+	</div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Столбец остатков</div>
+	<div class='value'>
+		<select name='stockRow'>
+					{$opt}
+		</select>
+	</div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Столбец описания</div>
+	<div class='value'>
+		<select name='descRow'>
+					{$opt}
+		</select>
+	</div>
+</div>
+
+
+
+
+<div class='iParam'>
+	<div class='name'>Каталог</div>
+	<div class='value'>
+		<select name='catalog'>
+			{foreach $cats as $c}
+				<option value='{$c->id}' {if $c->id==$cat}selected{/if}>{$c->name}</option>
+			{/foreach}
+		</select>
+	</div>
+</div>
+
+<input type='submit' value="OK" class='button' style='width:200px' />
+
+</form>
+</div>

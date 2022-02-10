@@ -1,0 +1,24 @@
+
+<table class='adm_table' id='user_table'>
+	<tr class='fisrt'>
+		<th class='first'><input type='checkbox' id='chekc_all' /></th>
+		<th>Навзание</th>
+		<th>Тип</th>
+		<th class='last'> </th>
+	</tr>
+
+{$class='one'}
+{foreach $ARTICLES as $m}
+
+
+	<tr id='st_{$m['mId']}' class='{$class}' >
+			<td><input type='checkbox' /></td>
+			<td><a href='/admin/?module=Article&{if $m['type']==1}edit={$m['mId']}{else}mId={$m['mId']}{/if}'>{$m['name']}</a></td>
+			<td>{if $m['type']==0}Каталог{else}Статья{/if}</td>
+			<td></td>
+	</tr>
+
+{/foreach}
+
+
+</table>

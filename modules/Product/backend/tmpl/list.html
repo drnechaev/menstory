@@ -1,0 +1,25 @@
+
+
+{*
+<table class='adm_table' >
+	<tr class='fisrt'>
+		<th class='first'>Навзание</th>
+		<th>Тип</th>
+		<th>Дата создания</th>
+		<th class='last'></th>
+	</tr>
+		
+	{foreach $cats as $c}
+		<tr id='st_{$c->id}' class='{if $c@iteration is even by 2}one{else}two{/if}'>
+			<td><a href='{if $c->moduleParams==1}/admin/?module=article&edit={$c->id}{else}/admin/?module=article&cat={$c->id}{/if}'>{$c->title}</a></td>
+			<td>{if $c->moduleParams==0}Каталог{else}Статья{/if}</td>
+			<td>{$c->created}</td>
+			<td><a href='/admin/?module=article&edit={$c->id}'><img src='/admin/template/img/edit.png'></a>
+				<a href='/admin/?module=article&delete={$c->id}'><img src='/admin/template/img/delete.png'></a>
+
+			
+			</td>
+		</tr>
+	{/foreach}
+	
+</table>*}

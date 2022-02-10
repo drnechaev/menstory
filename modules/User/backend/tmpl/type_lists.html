@@ -1,0 +1,32 @@
+
+<table class='adm_table multi' id='type_table'>
+	<tr class='fisrt'>
+		<th class='first'><input type='checkbox' id='chekc_all' /></th>
+		<th>Группа</th>
+		<th>Временная</th>
+		<th class='last'> </th>
+	</tr>
+
+	<form action='/admin/?module=user&type' method='post' id='nwMainForm'>
+	<input type='hidden' name='typeAction' value='1' />
+{$class='one'}
+{foreach $groups as $g}
+
+
+	<tr id='st_{$g['id']}' class='{$class}' >
+			<td></td>
+			<td><input type='text' name='type[{$g['id']}]' value='{$g['typeName']}' /></td>
+			<td><input type='checkbox' name='temp[{$g['id']}]' {if $g['temporary']==1}checked{/if} /></td>
+			<td></td>
+	</tr>
+	
+	{if $class=='one'}
+		{$class='two'}
+	{else}
+		{$class='one'}
+	{/if}
+
+{/foreach}
+
+	</form>
+</table>

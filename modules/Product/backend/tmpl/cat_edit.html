@@ -1,0 +1,68 @@
+{$editor = '.editor'}
+{* 
+	{include file='tinymce_init.html'}
+	*}
+
+<h1 id='caption'> </h1>
+
+<div style='margin-left:40px;'>
+<form id='mainForm' method='post' action='/admin/?module=product&edit={$cat}' enctype="multipart/form-data">
+<input type='hidden' name='prdCatAction' value='procces' />
+
+{$TEMPLATE_BEFORE}
+
+{*
+<div class='iParam'>
+	<div class='name'>Название</div>
+	<div class='value'><input type='text' id='name' name='name' value='{$c['name']}' /></div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Статус</div>
+	<div class='value'><input type='radio' name='status' value='0' {if $c['status']==0}checked{/if} /> Отключено<br/>
+			<input type='radio' name='status' value='1' {if $c['status']==1}checked{/if} /> Включено<br/></div>
+</div>
+
+
+<div class='iParam'>
+	<div class='name'>URL:</div>
+	<div class='value'><input type='text' name='url' value='{$c['url']}' /></div>
+</div>
+
+<div class='iParam'>
+	<div class='name'>Title:</div>
+	<div class='value'><input type='text' name='metaTitle' value='{$c['metaTitle']}' /></div>
+</div>
+<div class='iParam'>
+	<div class='name'>MetaDescription:</div>
+	<div class='value'><input type='text' name='metaDescription' value='{$c['metaDescription']}' /></div>
+</div>
+<div class='iParam'>
+	<div class='name'>Keywords:</div>
+	<div class='value'><input type='text' name='metaKeywords' value='{$c['metaKeywords']}' /></div>
+</div>
+
+
+
+
+<div class='iParam'>
+
+	{if $c['image']!=''}
+		<img src='/images/catalog/{$c['image']}' height='100px' style='float:left' />
+	{/if}
+	<div class='name'>Изображение</div>
+	<div class='value'><input type='file' id='img' name='img'' /></div><br/>
+	<div class='name'> Удалить изображение</div>
+	<div class='value'><input type='checkbox' name='del_img'' /></div>
+
+	<div style='clear:both'> </div>
+</div>
+
+<div class='iParam'>
+<textarea name='description' style='width:600px;height:200px' class='editor'>{$c['description']}</textarea/>
+</div>
+*}
+<input type='submit' value="OK" class='button' style='width:200px' />
+
+</form>
+</div>
